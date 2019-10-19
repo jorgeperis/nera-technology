@@ -1,0 +1,10 @@
+<div class="header">
+  <%= image_tag('cat.png') %>
+  <h1>Nera Technology</h1>
+</div>
+<div class="content">
+  <%= form_for download_excel_path, remote: true do |f| %>
+    <label id="files-label" for="files"><%= image_tag('files.png') %></label>
+    <%= f.file_field :files, multiple: true, id: "files" %>
+  <% end %>
+</div>
