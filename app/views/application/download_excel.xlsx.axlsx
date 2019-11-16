@@ -1,0 +1,18 @@
+Axlsx::Package.new do |p|
+  p.workbook.add_worksheet(:name => "Pesos individuales") do |sheet|
+    @files.each do |file|
+      data = Hash.from_xml(file.open)
+
+      array_data = data["XSerie"]["TEXT"]["s"]
+      fecha = array_data[1]
+      measures = array_data.select{ |i| i[/\s\s\d\:\s\d{2,}\,\d{2}\s\g/] }
+      measures_data = measures.map do |measure|
+        measure[/\d{2,}\,\d{2}/].gsub(',', '.').to_f
+      end
+
+      sheet.add_row measures_data.prepend(fecha)
+    end
+  end
+
+  p.serialize('pesos_individuales.xlsx')
+end

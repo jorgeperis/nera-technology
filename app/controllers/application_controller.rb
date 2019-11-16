@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   end
 
   def download_excel
-
+    @files = params[:download_excel][:files]
   end
 end
