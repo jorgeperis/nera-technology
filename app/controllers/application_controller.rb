@@ -11,13 +11,15 @@ class ApplicationController < ActionController::Base
 
           array_data = data["XSerie"]["TEXT"]["s"]
           fecha = array_data[1]
-          measures = array_data.select{ |i| i[/\d{1,}\,\d{2}\s\g/] }
+          measures = array_data.select{ |i| i[/\d{1,}\:\s*\d{1,3}\,\d{2}\s\g/] }
           measures_data = measures.map do |measure|
-            measure[/\d{1,}\,\d{2}/].gsub(',', '.').to_f
+            measure[/\d{1,3}\,\d{2}/].gsub(',', '.').to_f
           end
 
           sheet.add_row measures_data.prepend(fecha)
         end
+        sheet.add_row([])
+        sheet.add_row(['Powered by Nera Technology'])
       end
 
       p.serialize('pesos_agrupados.xlsx')
