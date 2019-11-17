@@ -42,3 +42,7 @@ form #files {
 form label{
   cursor: pointer;
 }
+
+#files-label img:hover {
+  opacity: 0.7;
+}
