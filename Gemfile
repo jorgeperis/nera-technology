@@ -24,6 +24,8 @@ gem 'rubyzip'
 gem 'axlsx'
 gem 'axlsx_rails'
 
+gem "loofah", ">= 2.3.1"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
